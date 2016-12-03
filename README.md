@@ -1,4 +1,17 @@
-#
+
+# tl;dr
+```
+npm install electron -g
+
+git clone https://github.com/tyanas/menubar-server
+cd menubar-server
+npm install
+
+npm start
+```
+
+
+# do later
 
 ```sh
 # Install the `electron` command globally in your $PATH
