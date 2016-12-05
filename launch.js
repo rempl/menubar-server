@@ -2,9 +2,10 @@ const server = require('basisjs-tools/lib/server/index.js')
 
 process.on('message', (m) => {
     console.log('basis server got message:', m);
-    if (m === 'launch') {
+    let [command, port] = m.split(' ');
+    if (command === 'launch') {
         server.launch({
-            port: 8004
+            port: port ? Number(port) : 8004
         })
     }
 });

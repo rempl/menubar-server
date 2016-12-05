@@ -5,15 +5,16 @@ const app = electron.app
 const Menu = electron.Menu
 const Tray = electron.Tray
 
-const fork = require('child_process').fork;
-const shell = require('electron').shell;
+const fork = require('child_process').fork
+const shell = require('electron').shell
+const PORT = 8003
 
-var my_launch;
-var was_stopped = false
+var hasTab = false
+var server
 
 function kill_server() {
-    if (my_launch) {
-        my_launch.disconnect()
+    if (server) {
+        server.kill()
     } else {
         console.log('Nothing to stop')
     }
@@ -28,17 +29,17 @@ app.on('ready', function () {
             label: 'Start',
             click: function () {
                 console.log('click start')
-                if (!my_launch || my_launch.killed  || !my_launch.connected) {
-                    my_launch = fork('./launch.js');
+                if (!server || server.killed  || !server.connected) {
+                    server = fork('./launch.js');
+                    server.send(`launch ${PORT}`)
                 } 
-    
-                setTimeout(function() {
-                    my_launch.send('launch')
-                })
 
-                setTimeout(function() {
-                    shell.openExternal('http://localhost:8004/basisjs-tools/devtool/');
-                })
+                if (!hasTab) {
+                    setTimeout(function() {
+                        hasTab = true
+                        shell.openExternal(`http://localhost:${PORT}/basisjs-tools/devtool/`);
+                    }, 500)
+                }
             }
         },
         {
