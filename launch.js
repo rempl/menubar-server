@@ -1,4 +1,4 @@
-const server = require('basisjs-tools/lib/server/index.js')
+const server = require('basisjs-tools-server/lib/index.js')
 
 process.on('message', (m) => {
     console.log('basis server got message:', m);
