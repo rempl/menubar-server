@@ -1,6 +1,5 @@
 const path = require('path')
 const electron = require('electron')
-const ipc = electron.ipcMain
 const app = electron.app
 const Menu = electron.Menu
 const Tray = electron.Tray
@@ -30,7 +29,7 @@ app.on('ready', function () {
             click: function () {
                 console.log('click start')
                 if (!server || server.killed  || !server.connected) {
-                    server = fork('./launch.js');
+                    server = fork(path.resolve(__dirname, './launch.js'));
                     server.send(`launch ${PORT}`)
                 } 
 

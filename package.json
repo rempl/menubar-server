@@ -4,7 +4,7 @@
   "description": "example menubar electron app",
   "dependencies": {
     "basisjs": "basisjs/basisjs#4b2406fedcb13c18590157ae8c53ddfc030e8ac5",
-    "basisjs-tools": "basisjs/basisjs-tools#fb98da88a50e68eb2fdddf6ec90d0f1088da8cd6"
+    "basisjs-tools-server": "basisjs/basisjs-tools-server#62c32721c57b7b16fa45e019c3939a29258290dd"
   },
   "devDependencies": {
     "electron": "^1.4.10",
