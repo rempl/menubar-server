@@ -44,3 +44,9 @@ lrwxr-xr-x  1 username  group   26  5 дек 14:00 basis -> ../basisjs-tools/bin
 lrwxr-xr-x  1 username  group   53  5 дек 14:05 electron -> ../electron/dist/Electron.app/Contents/MacOS/Electron
 lrwxr-xr-x  1 username  group   27  5 дек 14:17 electron-packager -> ../electron-packager/cli.js
 ```
+
+# icons
+
+png 1024x1024 is needed
+
+https://cloudconvert.com/png-to-icns
