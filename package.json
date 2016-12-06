@@ -1,7 +1,7 @@
 {
-  "name": "menubar-server-app",
+  "name": "rempl-server-app",
   "version": "1.0.0",
-  "description": "example menubar electron app",
+  "description": "rempl basisjs basisjs-tools devtools",
   "dependencies": {
     "basisjs": "basisjs/basisjs#4b2406fedcb13c18590157ae8c53ddfc030e8ac5",
     "basisjs-tools-server": "basisjs/basisjs-tools-server#62c32721c57b7b16fa45e019c3939a29258290dd"
@@ -12,7 +12,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "build": "electron-packager . Example --platform=darwin --arch=x64 --version=1.4.10 --icon=Icon.icns --overwrite",
+    "build": "electron-packager . Rempl --platform=darwin --arch=x64 --version=1.4.10 --icon=Icon.icns --overwrite",
     "start": "electron ."
   }
 }
