@@ -1,20 +1,47 @@
 {
-  "name": "rempl-server-app",
+  "name": "menubar-server",
   "version": "1.0.0",
-  "description": "rempl basisjs basisjs-tools devtools",
+  "description": "Rempl server GUI",
+  "license": "MIT",
+  "repository": "rempl/menubar-server",
+  "homepage": "https://github.com/rempl/menubar-server",
+  "bugs": {
+    "url": "https://github.com/rempl/menubar-server/issues"
+  },
   "dependencies": {
     "basisjs": "basisjs/basisjs#4b2406fedcb13c18590157ae8c53ddfc030e8ac5",
     "basisjs-tools-server": "basisjs/basisjs-tools-server#62c32721c57b7b16fa45e019c3939a29258290dd"
   },
   "devDependencies": {
     "electron": "^1.4.10",
-    "electron-packager": "^8.3.0"
+    "electron-packager": "^8.3.0",
+    "eslint": "^3.11.1",
+    "jscs": "^3.0.7"
   },
-  "main": "main.js",
+  "main": "./src/main.js",
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "mocha": true,
+      "es6": true
+    },
+    "rules": {
+      "no-duplicate-case": "error",
+      "no-undef": "error",
+      "no-unused-vars": [
+        "error",
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ]
+    }
+  },
   "scripts": {
-    "build-mac": "rm -rf Rempl-darwin-x64; electron-packager . Rempl --platform=darwin --arch=x64 --version=1.4.10 --icon=Icon.icns --overwrite",
-    "build-win": "rm -rf Rempl-win-x64; electron-packager . Rempl --platform=win32 --arch=x64 --version=1.4.10 --icon=Icon.icns --overwrite",
-    "build": "build-mac",
+    "check-style": "jscs ./src && eslint ./src",
+    "build-mac": "npm run check-style; rm -rf ./build; electron-packager . Rempl --out=./build --platform=darwin --arch=x64 --version=1.4.10 --icon=./res/mainIcon.icns --overwrite",
+    "build-win": "npm run check-style; rm -rf ./build; electron-packager . Rempl --out=./build --platform=win32 --arch=x64 --version=1.4.10 --icon=./res/mainIcon.icns --overwrite",
+    "build": "npm run build-mac",
     "start": "electron ."
   }
 }
