@@ -1,52 +1,19 @@
 
-# tl;dr
-```
+# Rempl server GUI
+
+The app allows you to control [Rempl](https://github.com/rempl/rempl) server.
+
+<img width="100" alt="screenshot at 07 16-41-21" src="https://cloud.githubusercontent.com/assets/6654581/20969882/085c807a-bc9c-11e6-972a-9649f4830a1e.png">
+
+## Using
+
+```shell
 npm install electron -g
-
-git clone https://github.com/tyanas/menubar-server
-cd menubar-server
 npm install
-
 npm start
 ```
-
-
-# do later
-
-```sh
-# Install the `electron` command globally in your $PATH
-npm install electron -g
+or
+```bash
+npm run build
 ```
-
-https://github.com/szwacz/electron-boilerplate
-
-https://github.com/maxogden/menubar
-
-
-# example menubar app
-
-## instructions
-
-- run `npm install`
-- run `npm run build` to make Example.app
-- run `npm start` to run app from CLI without building Example.app
-
-# debug
-
-check executables
-
-```
-~/menubar-server $ ls -al node_modules/.bin/
-total 24
-drwxr-xr-x  5 username  group  170  5 дек 14:17 .
-drwxr-xr-x  7 username  group  238  5 дек 14:00 ..
-lrwxr-xr-x  1 username  group   26  5 дек 14:00 basis -> ../basisjs-tools/bin/basis
-lrwxr-xr-x  1 username  group   53  5 дек 14:05 electron -> ../electron/dist/Electron.app/Contents/MacOS/Electron
-lrwxr-xr-x  1 username  group   27  5 дек 14:17 electron-packager -> ../electron-packager/cli.js
-```
-
-# icons
-
-png 1024x1024 is needed
-
-https://cloudconvert.com/png-to-icns
+to create executable file for your OS
