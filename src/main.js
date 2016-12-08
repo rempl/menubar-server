@@ -51,8 +51,6 @@ function killServer() {
             contextMenu.items[1].enabled = false;
             contextMenu.items[2].enabled = false;
         }
-    } else {
-        console.log('Nothing to stop');
     }
 }
 
@@ -81,8 +79,17 @@ if (app.dock) {
 }
 
 app.on('ready', function() {
-    win = new BrowserWindow({ show: false , width: 300, height: 80, frame: false });
-    win.setPosition(1000, 25);
+    win = new BrowserWindow({
+        title: 'Change rempl port', 
+        show: false, 
+        width: 300, 
+        height: 100, 
+        closable: false,
+        minimizable: false,
+        resizable: false,
+        fullscreenable: false 
+    });
+    win.setPosition(900, 25);
     win.loadURL('file://' + __dirname + '/index.html');
 
     appIcon = new Tray(iconPath.inactive);
@@ -106,7 +113,6 @@ app.on('ready', function() {
         label: `Stop rempl`,
         enabled: true,
         click: function() {
-            console.log('click stop');
             killServer();
         }
     });
@@ -129,8 +135,8 @@ app.on('ready', function() {
         {
             label: 'Quit',
             click: function() {
-                console.log('click quit');
                 killServer();
+                win.setClosable(true);
                 app.quit();
             }
         }
