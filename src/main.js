@@ -8,9 +8,21 @@ var fork = require('child_process').fork;
 var shell = require('electron').shell;
 var PORT = 8003;
 
+var platform = process.platform === 'win32' ? 'windows' : 'mac';
+var iconPath = {
+    active: path.resolve(__dirname, `../res/${platform}-icon.png`),
+    inactive: path.resolve(__dirname, `../res/${platform}-icon-gray.png`)
+};
+
 var appIcon;
 var hasTab = false;
 var server;
+
+function startServer() {
+    server = fork(path.resolve(__dirname, './launch.js'));
+    server.send(`launch ${PORT}`);
+    appIcon.setImage(iconPath.active);
+}
 
 function killServer() {
     if (server) {
@@ -26,26 +38,16 @@ if (app.dock) {
 }
 
 app.on('ready', function() {
-    var platform = process.platform === 'win32' ? 'windows' : 'mac';
-    var iconPath = path.resolve(__dirname, `../res/${platform}-icon.png`);
-    var inactiveIconPath = path.resolve(__dirname, `../res/${platform}-icon-gray.png`);
-    var tooltip = {
-        active: `Rempl server is runnning at localhost:${PORT}`,
-        inactive: 'Rempl server is not runnning'
-    };
+    appIcon = new Tray(iconPath.inactive);
 
-    appIcon = new Tray(inactiveIconPath);
-    appIcon.setToolTip(tooltip.inactive);
+    startServer();
 
     var contextMenu = Menu.buildFromTemplate([
         {
             label: 'Start',
             click: function() {
                 if (!server || server.killed || !server.connected) {
-                    server = fork(path.resolve(__dirname, './launch.js'));
-                    server.send(`launch ${PORT}`);
-                    appIcon.setImage(iconPath);
-                    appIcon.setToolTip(tooltip.active);
+                    startServer();
                 }
 
                 if (!hasTab) {
@@ -61,8 +63,7 @@ app.on('ready', function() {
             click: function() {
                 console.log('click stop');
                 killServer();
-                appIcon.setImage(inactiveIconPath);
-                appIcon.setToolTip(tooltip.inactive);
+                appIcon.setImage(iconPath.inactive);
             }
         },
         {
