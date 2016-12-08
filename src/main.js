@@ -32,9 +32,9 @@ function startServer() {
     }
 
     if (contextMenu) {
-        contextMenu.items[0].enabled = false;
-        contextMenu.items[1].enabled = true;
-        contextMenu.items[2].enabled = true;
+        contextMenu.items[0].visible = false;
+        contextMenu.items[1].visible = true;
+        contextMenu.items[2].visible = true;
     }
 }
 
@@ -47,9 +47,9 @@ function killServer() {
         }
 
         if (contextMenu) {
-            contextMenu.items[0].enabled = true;
-            contextMenu.items[1].enabled = false;
-            contextMenu.items[2].enabled = false;
+            contextMenu.items[0].visible = true;
+            contextMenu.items[1].visible = false;
+            contextMenu.items[2].visible = false;
         }
     }
 }
@@ -80,7 +80,7 @@ if (app.dock) {
 
 app.on('ready', function() {
     win = new BrowserWindow({
-        title: 'Change rempl port',
+        title: 'Change server port',
         show: false,
         width: 300,
         height: 100,
@@ -97,8 +97,8 @@ app.on('ready', function() {
     startServer();
 
     var startMenuItem = new MenuItem({
-        label: `Start rempl`,
-        enabled: false,
+        label: 'Start server',
+        visible: false,
         click: function() {
             if (!server || server.killed || !server.connected) {
                 startServer();
@@ -110,18 +110,18 @@ app.on('ready', function() {
         }
     });
     var stopMenuItem = new MenuItem({
-        label: `Stop rempl`,
-        enabled: true,
+        label: 'Stop server',
+        visible: true,
         click: function() {
             killServer();
         }
     });
-    var contextMenu = Menu.buildFromTemplate([
+    contextMenu = Menu.buildFromTemplate([
         startMenuItem,
         stopMenuItem,
         {
             label: 'Open sandbox',
-            enabled: true,
+            visible: true,
             click: function() {
                 showTab();
             }
