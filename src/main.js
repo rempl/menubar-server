@@ -3,7 +3,6 @@ var electron = require('electron');
 var app = electron.app;
 var Menu = electron.Menu;
 var Tray = electron.Tray;
-var iconName = '../res/trayIcon.png';
 
 var fork = require('child_process').fork;
 var shell = require('electron').shell;
@@ -16,15 +15,28 @@ var server;
 function killServer() {
     if (server) {
         server.kill();
+    } else {
+        console.log('Nothing to stop');
     }
 }
 
-// awailable on MacOS only
+// available on MacOS only
 if (app.dock) {
     app.dock.hide();
 }
 
 app.on('ready', function() {
+    var platform = process.platform === 'win32' ? 'windows' : 'mac';
+    var iconPath = path.resolve(__dirname, `../res/${platform}-icon.png`);
+    var inactiveIconPath = path.resolve(__dirname, `../res/${platform}-icon-gray.png`);
+    var tooltip = {
+        active: `Rempl server is runnning at localhost:${PORT}`,
+        inactive: 'Rempl server is not runnning'
+    };
+
+    appIcon = new Tray(inactiveIconPath);
+    appIcon.setToolTip(tooltip.inactive);
+
     var contextMenu = Menu.buildFromTemplate([
         {
             label: 'Start',
@@ -32,6 +44,8 @@ app.on('ready', function() {
                 if (!server || server.killed || !server.connected) {
                     server = fork(path.resolve(__dirname, './launch.js'));
                     server.send(`launch ${PORT}`);
+                    appIcon.setImage(iconPath);
+                    appIcon.setToolTip(tooltip.active);
                 }
 
                 if (!hasTab) {
@@ -45,20 +59,22 @@ app.on('ready', function() {
         {
             label: 'Stop',
             click: function() {
+                console.log('click stop');
                 killServer();
+                appIcon.setImage(inactiveIconPath);
+                appIcon.setToolTip(tooltip.inactive);
             }
         },
         {
             label: 'Quit',
             click: function() {
+                console.log('click quit');
                 killServer();
                 app.quit();
             }
         }
     ]);
 
-    appIcon = new Tray(path.resolve(__dirname, iconName));
-    appIcon.setToolTip('Rempl server GUI');
     appIcon.setContextMenu(contextMenu);
 });
 
