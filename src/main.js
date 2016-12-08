@@ -80,14 +80,14 @@ if (app.dock) {
 
 app.on('ready', function() {
     win = new BrowserWindow({
-        title: 'Change rempl port', 
-        show: false, 
-        width: 300, 
-        height: 100, 
+        title: 'Change rempl port',
+        show: false,
+        width: 300,
+        height: 100,
         closable: false,
         minimizable: false,
         resizable: false,
-        fullscreenable: false 
+        fullscreenable: false
     });
     win.setPosition(900, 25);
     win.loadURL('file://' + __dirname + '/index.html');
