@@ -19,7 +19,10 @@ function killServer() {
     }
 }
 
-app.dock.hide();
+// awailable on MacOS only
+if (app.dock) {
+    app.dock.hide();
+}
 
 app.on('ready', function() {
     var contextMenu = Menu.buildFromTemplate([
