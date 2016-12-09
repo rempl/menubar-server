@@ -1,3 +1,5 @@
+const DEFAULT_PORT = 8177;
+
 var path = require('path');
 var electron = require('electron');
 var app = electron.app;
@@ -8,8 +10,7 @@ var BrowserWindow = electron.BrowserWindow;
 
 var fork = require('child_process').fork;
 var shell = require('electron').shell;
-var PORT = 8177;
-var port = PORT;
+var port = DEFAULT_PORT;
 
 var platform = process.platform === 'win32' ? 'windows' : 'mac';
 var iconPath = {
@@ -62,7 +63,7 @@ function showTab() {
 }
 
 function sync(newPort) {
-    port = newPort;
+    port = isNaN(newPort) ? DEFAULT_PORT : Number(newPort);
     killServer();
     startServer();
     showTab();
