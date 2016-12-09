@@ -7,7 +7,10 @@ The app allows to control [Rempl](https://github.com/rempl/rempl) server.
 
 <img width="149" alt="stsrt" src="./docs/screenshots/stop.png"/>
 
-<img width="496" alt="stsrt" src="./docs/screenshots/change_port.png"/>
+<img width="396" alt="stsrt" src="./docs/screenshots/change_port.png"/>
+
+Open sandbox manually
+<img width="506" alt="stsrt" src="./docs/screenshots/sandbox.png"/>
 
 ## Usage
 
