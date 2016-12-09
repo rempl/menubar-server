@@ -83,7 +83,7 @@ app.on('ready', function() {
     win = new BrowserWindow({
         title: 'Change server port',
         show: false,
-        width: 300,
+        width: 250,
         height: 100,
         closable: false,
         minimizable: false,
