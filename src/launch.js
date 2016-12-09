@@ -5,7 +5,7 @@ process.on('message', (m) => {
 
     if (command === 'launch') {
         server.launch({
-            port: port ? Number(port) : 8004
+            port: port
         });
     }
 });
