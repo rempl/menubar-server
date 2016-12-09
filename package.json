@@ -39,8 +39,9 @@
   },
   "scripts": {
     "check-style": "jscs ./src && eslint ./src",
-    "build-mac": "npm run check-style; rm -rf ./build/*darwin*; electron-packager . Rempl --out=./build --platform=darwin --arch=x64 --version=1.4.11 --icon=./res/logo.icns --overwrite",
-    "build-win": "npm run check-style; rm -rf ./build/*win32*; electron-packager . Rempl --out=./build --platform=win32 --arch=x64 --version=1.4.11 --icon=./res/logo.icns --overwrite",
+    "test": "npm run check-style",
+    "build-mac": "rm -rf ./build/*darwin*; electron-packager . Rempl --out=./build --platform=darwin --arch=x64 --version=1.4.11 --icon=./res/logo.icns --overwrite",
+    "build-win": "rm -rf ./build/*win32*; electron-packager . Rempl --out=./build --platform=win32 --arch=x64 --version=1.4.11 --icon=./res/logo.icns --overwrite",
     "build": "npm run build-mac",
     "start": "electron ."
   }
