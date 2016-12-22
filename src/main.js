@@ -58,7 +58,7 @@ function killServer() {
 function showTab() {
     setTimeout(function() {
         hasTab = true;
-        shell.openExternal(`http://localhost:${port}/basisjs-tools/devtool/`);
+        shell.openExternal('http://localhost:' + port);
     }, 500);
 }
 

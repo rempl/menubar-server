@@ -2,15 +2,17 @@
   "name": "menubar-server",
   "version": "1.0.0",
   "description": "Rempl server GUI",
+  "author": "Anastasia Goryacheva",
   "license": "MIT",
   "repository": "rempl/menubar-server",
   "homepage": "https://github.com/rempl/menubar-server",
   "bugs": {
     "url": "https://github.com/rempl/menubar-server/issues"
   },
+  "main": "./src/main.js",
   "dependencies": {
-    "basisjs": "basisjs/basisjs#4b2406fedcb13c18590157ae8c53ddfc030e8ac5",
-    "basisjs-tools-server": "basisjs/basisjs-tools-server#6f7d3514429303676098fc6abeb794f16d6d9705"
+    "rempl": "1.0.0-alpha5",
+    "basisjs-tools-server": "basisjs/basisjs-tools-server#rempl"
   },
   "devDependencies": {
     "electron": "^1.4.10",
@@ -18,7 +20,6 @@
     "eslint": "^3.11.1",
     "jscs": "^3.0.7"
   },
-  "main": "./src/main.js",
   "eslintConfig": {
     "env": {
       "node": true,
